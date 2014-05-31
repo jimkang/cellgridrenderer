@@ -68,8 +68,11 @@ function controller() {
     }
 
     ['rightArrow', 'downArrow', 'space', 'enter', 'n'].forEach(routeToNext);
-    ['leftArrow', 'upArrow', 'backspace', 'p'].forEach(routeToPrevious);
+    ['leftArrow', 'upArrow', 'p'].forEach(routeToPrevious);
   })();
+
+  d3.select('#next-button').on('click', renderNextSet);
+  d3.select('#previous-button').on('click', renderPreviousSet);
 }
 
 var theController = controller();
