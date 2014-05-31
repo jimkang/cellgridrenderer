@@ -4,10 +4,10 @@ function createCellGridRenderer(opts) {
     return cell.d.name;
   });
   a.cacheAccessor('transform', function getTransform(d) {
-    return 'translate(' 
-      + d.coords[0] * opts.cellWidth + ',' 
-      + d.coords[1] * opts.cellHeight 
-      + ') scale(' + opts.cellWidth + ', ' + opts.cellHeight + ')';
+    return 'translate(' + 
+      d.coords[0] * opts.cellWidth + ',' + 
+      d.coords[1] * opts.cellHeight + 
+      ') scale(' + opts.cellWidth + ', ' + opts.cellHeight + ')';
   });
 
   var tileRoot = d3.select(opts.selectors.root);

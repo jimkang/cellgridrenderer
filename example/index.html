@@ -28,7 +28,13 @@
   <g id="backdroplayer">
     <rect width="100%" height="100%"></rect>
   </g>
-  <g id="celllayer">
+  <g id="default-cell-layer">
+  </g>
+  <g id="faster-cell-layer" transform="translate(200, 0)">
+  </g>
+  <g id="slosh-cell-layer" transform="translate(0, 200)">
+  </g>
+  <g id="slow-cell-layer" transform="translate(200, 200)">
   </g>
 </svg>
 
@@ -46,6 +52,7 @@
 </footer>
 
 <script src="d3.v3.min.js"></script>
+<script src="../node_modules/queue-async/queue.js"></script>
 <script src="../node_modules/accessorizer/accessorizer.js"></script>
 <script src="../cellgridrenderer.js"></script>
 <script src="../node_modules/strokerouter/strokerouter.js"></script>
