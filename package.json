@@ -21,7 +21,8 @@
   },
   "homepage": "https://github.com/jimkang/cellgridrenderer",
   "devDependencies": {
-    "mocha": "~1.18.2"
+    "mocha": "~1.18.2",
+    "strokerouter": "~0.3.1"
   },
   "dependencies": {
     "accessorizer": "~0.1.0"

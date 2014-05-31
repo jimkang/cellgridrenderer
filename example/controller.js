@@ -21,9 +21,6 @@ function controller() {
   var cellSets = [];
   var cellSetIndex = 0;
 
-  d3.json('Cross_formation.With_a_default_reaction__pressure_should_oscillate_between_the_center_and_arm_cells.approved.txt',
-    saveAndStart);
-
   function saveAndStart(cellData) {
     cellSets = cellData;
     renderCurrentSet();
@@ -31,9 +28,48 @@ function controller() {
 
   function renderCurrentSet() {
     renderer.renderCells(cellSets[cellSetIndex]);
-    cellSetIndex += 1;
   }
 
+  function advanceCellSet() {
+    cellSetIndex += 1;
+    if (cellSetIndex >= cellSets.length) {
+      cellSetIndex = 0;
+    }    
+  }
+
+  function devanceCellSet() {
+    cellSetIndex -= 1;
+    if (cellSetIndex < 0) {
+      cellSetIndex = cellSets.length - 1;
+    }    
+  }
+
+  function renderNextSet() {
+    advanceCellSet();
+    renderCurrentSet();
+  }
+
+  function renderPreviousSet() {
+    devanceCellSet();
+    renderCurrentSet();
+  }
+
+  d3.json('Cross_formation.With_a_default_reaction__pressure_should_oscillate_between_the_center_and_arm_cells.approved.txt',
+    saveAndStart);
+
+  (function setUpKeyCommands() {
+    var strokerouter = createStrokeRouter(d3.select(document));
+
+    function routeToNext(key) {
+      strokerouter.routeKeyUp(key, null, renderNextSet);
+    }
+    function routeToPrevious(key) {
+      strokerouter.routeKeyUp(key, null, renderPreviousSet);
+    }
+
+    ['rightArrow', 'downArrow', 'space', 'enter', 'n'].forEach(routeToNext);
+    ['leftArrow', 'upArrow', 'backspace', 'p'].forEach(routeToPrevious);
+  })();
 }
 
 var theController = controller();
