@@ -1,0 +1,29 @@
+{
+  "name": "cellgridrenderer",
+  "version": "0.1.0",
+  "description": "A browser module for rendering grids of cells.",
+  "main": "cellgridrenderer.js",
+  "repository": {
+    "type": "git",
+    "url": "git@github.com:jimkang/cellgridrenderer.git"
+  },
+  "keywords": [
+    "browser",
+    "d3",
+    "cell",
+    "automata",
+    "automaton"
+  ],
+  "author": "Jim Kang",
+  "license": "MIT",
+  "bugs": {
+    "url": "https://github.com/jimkang/cellgridrenderer/issues"
+  },
+  "homepage": "https://github.com/jimkang/cellgridrenderer",
+  "devDependencies": {
+    "mocha": "~1.18.2"
+  },
+  "dependencies": {
+    "accessorizer": "~0.1.0"
+  }
+}
