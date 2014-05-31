@@ -14,8 +14,14 @@ function controller() {
     }
   });
 
+  var pressureColor = d3.scale.linear()
+    .range(['red', 'blue'])
+    // .range([d3.lab(50, -86, -107), d3.lab(50, 98, 74)])
+    .interpolate(d3.interpolateLab);
+
   function fillForPressure(cell) {
-    return 'hsla(0, 0%, ' + cell.d.p/20.0 * 100 + '%, 1.0)';
+    return pressureColor(cell.d.p/10.0);
+    //'hsla(0, 0%, ' + cell.d.p/20.0 * 100 + '%, 1.0)';
   }
 
   var cellSets = [];
