@@ -26,6 +26,9 @@ function controller() {
       // Setting the fill for the <g>s means <rect>s within them will use that 
       // fill, too.
       cellRenditions.attr('fill', fillForPressure);
+    },
+    idFunction: function id(cell) {
+      return cell.coords[0] + '_' + cell.coords[1];
     }
   };
 
@@ -58,7 +61,7 @@ function controller() {
     else {
       listOfCellSets = cellData;
       renderers.forEach(function render(renderer, i) {
-        renderer.initialRender(listOfCellSets[i][cellSetsIndex]);
+        renderer.renderCells(listOfCellSets[i][cellSetsIndex]);
       });
     }
   }
