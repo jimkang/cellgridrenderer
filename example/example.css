@@ -14,6 +14,8 @@ body {
 
 svg {
   font-family: "Lucida Grande", "Helvetica Neue", sans-serif;
+  width: 100%;
+  min-height: 500px;
 }
 
 a {

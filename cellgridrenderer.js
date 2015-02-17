@@ -1,20 +1,19 @@
 function createCellGridRenderer(opts) {
-  var a = createAccessorizer();
-  a.cacheAccessor('id', function id(cell) {
+  function cellId(cell) {
     return cell.d.name;
-  });
-  a.cacheAccessor('transform', function getTransform(d) {
+  }
+  function getTransform(d) {
     return 'translate(' + 
       d.coords[0] * opts.cellWidth + ',' + 
       d.coords[1] * opts.cellHeight + 
       ') scale(' + opts.cellWidth + ', ' + opts.cellHeight + ')';
-  });
+  }
 
   var tileRoot = d3.select(opts.selectors.root);
 
   function renderCells(cells) {
     var cellRenditions = tileRoot.selectAll('.' + opts.cellClass)
-      .data(cells, a.id);
+      .data(cells, cellId);
 
     var newCellRenditions = cellRenditions.enter()
       .append('g').classed(opts.cellClass, true)
@@ -32,7 +31,7 @@ function createCellGridRenderer(opts) {
     }
 
     cellRenditions.transition().delay(300).duration(500).ease('linear')
-      .attr('transform', a.transform);
+      .attr('transform', getTransform);
     cellRenditions.transition().delay(800).duration(500).attr('opacity', 1);
 
     cellRenditions.exit().transition().duration(300)
@@ -42,4 +41,9 @@ function createCellGridRenderer(opts) {
   return {
     renderCells: renderCells
   };
+}
+
+
+if (typeof module === 'object' && typeof module.exports === 'object') {
+  module.exports = createCellGridRenderer;
 }

@@ -1,12 +1,10 @@
 function createFixedCellGridRenderer(opts) {
-  var a = createAccessorizer();
-
-  a.cacheAccessor('transform', function getTransform(d) {
-    return 'translate(' 
-      + d.coords[0] * opts.cellWidth + ',' 
-      + d.coords[1] * opts.cellHeight 
-      + ') scale(' + opts.cellWidth + ', ' + opts.cellHeight + ')';
-  });
+  function getTransform(d) {
+    return 'translate(' + 
+      d.coords[0] * opts.cellWidth + ',' + 
+      d.coords[1] * opts.cellHeight + 
+      ') scale(' + opts.cellWidth + ', ' + opts.cellHeight + ')';
+  }
 
   var tileRoot = d3.select(opts.selectors.root);
 
@@ -25,7 +23,7 @@ function createFixedCellGridRenderer(opts) {
         width: 1,
         height: 1
       })
-      .attr('transform', a.transform);
+      .attr('transform', getTransform);
 
     cellRenditions.attr('opacity', 1.0);
 
@@ -41,4 +39,8 @@ function createFixedCellGridRenderer(opts) {
   return {
     renderCells: renderCells
   };
+}
+
+if (typeof module === 'object' && typeof module.exports === 'object') {
+  module.exports = createFixedCellGridRenderer;
 }

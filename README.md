@@ -37,6 +37,18 @@ In a JavaScript file:
 
 [Here's a working example.](http://jimkang.com/cellgridrenderer/example)
 
+With Browserify:
+
+    var createRenderer = require('cellgridrenderer').createCellGridRenderer;
+    // Then, the rest is the same.
+
+If you are working with a fixed grid that is not going to change in size over time, you can use FixedCellGridRenderer, which is more efficient for that case.
+
+
+    var createRenderer = require('cellgridrenderer').createFixedCellGridRenderer;
+
+[Here's a working browserified example.](http://jimkang.com/cellgridrenderer/example/browserified.html)
+
 License
 -------
 
