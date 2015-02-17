@@ -1,9 +1,10 @@
 function createFixedCellGridRenderer(opts) {
-  function getTransform(d) {
-    return 'translate(' + 
-      d.coords[0] * opts.cellWidth + ',' + 
-      d.coords[1] * opts.cellHeight + 
-      ') scale(' + opts.cellWidth + ', ' + opts.cellHeight + ')';
+  function cellX(cell) {
+    return opts.cellWidth * (cell.coords[0] + 0.5);
+  }
+
+  function cellY(cell) {
+    return opts.cellHeight * (cell.coords[1] + 0.5);
   }
 
   var tileRoot = d3.select(opts.selectors.root);
@@ -18,12 +19,11 @@ function createFixedCellGridRenderer(opts) {
 
     newCellRenditions
       .append('rect').attr({
-        x: 0,
-        y: 0,
-        width: 1,
-        height: 1
-      })
-      .attr('transform', getTransform);
+        x: cellX,
+        y: cellY,
+        width: opts.cellWidth,
+        height: opts.cellWidth
+      });
 
     cellRenditions.attr('opacity', 1.0);
 

@@ -1,6 +1,6 @@
 {
   "name": "cellgridrenderer",
-  "version": "1.0.0",
+  "version": "1.0.1",
   "description": "A browser module for rendering grids of cells.",
   "main": "index.js",
   "repository": {

@@ -3,11 +3,13 @@ function createCellGridRenderer(opts) {
   function cellId(cell) {
     return cell.d.name;
   }
-  function getTransform(d) {
-    return 'translate(' + 
-      d.coords[0] * opts.cellWidth + ',' + 
-      d.coords[1] * opts.cellHeight + 
-      ') scale(' + opts.cellWidth + ', ' + opts.cellHeight + ')';
+  
+  function cellX(cell) {
+    return opts.cellWidth * (cell.coords[0] + 0.5);
+  }
+
+  function cellY(cell) {
+    return opts.cellHeight * (cell.coords[1] + 0.5);
   }
 
   var tileRoot = d3.select(opts.selectors.root);
@@ -21,18 +23,16 @@ function createCellGridRenderer(opts) {
       .attr('opacity', 0);
 
     newCellRenditions.append('rect').attr({
-      x: 0,
-      y: 0,
-      width: 1,
-      height: 1
+      x: cellX,
+      y: cellY,
+      width: opts.cellWidth,
+      height: opts.cellHeight
     });
 
     if (opts.customizeCellRendition) {
       cellRenditions.each(opts.customizeCellRendition);
     }
 
-    cellRenditions.transition().delay(300).duration(500).ease('linear')
-      .attr('transform', getTransform);
     cellRenditions.transition().delay(800).duration(500).attr('opacity', 1);
 
     cellRenditions.exit().transition().duration(300)
@@ -185,11 +185,12 @@ var theController = controller();
 
 },{"../index":4,"d3":5,"queue-async":6}],3:[function(require,module,exports){
 function createFixedCellGridRenderer(opts) {
-  function getTransform(d) {
-    return 'translate(' + 
-      d.coords[0] * opts.cellWidth + ',' + 
-      d.coords[1] * opts.cellHeight + 
-      ') scale(' + opts.cellWidth + ', ' + opts.cellHeight + ')';
+  function cellX(cell) {
+    return opts.cellWidth * (cell.coords[0] + 0.5);
+  }
+
+  function cellY(cell) {
+    return opts.cellHeight * (cell.coords[1] + 0.5);
   }
 
   var tileRoot = d3.select(opts.selectors.root);
@@ -204,12 +205,11 @@ function createFixedCellGridRenderer(opts) {
 
     newCellRenditions
       .append('rect').attr({
-        x: 0,
-        y: 0,
-        width: 1,
-        height: 1
-      })
-      .attr('transform', getTransform);
+        x: cellX,
+        y: cellY,
+        width: opts.cellWidth,
+        height: opts.cellWidth
+      });
 
     cellRenditions.attr('opacity', 1.0);
 

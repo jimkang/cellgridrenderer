@@ -183,3 +183,8 @@ footer .copy {
 footer .copy, footer .copy a {
   color: #8e8e8e;
 }
+
+.cell {
+  stroke: #333;
+}
+
